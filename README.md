@@ -1,12 +1,21 @@
-# TalentekIA - Sistema Unificado
+# 🧠 TalentekIA - Sistema Unificado de Agentes IA
 
-Sistema de agentes de IA personalizados para automatización y análisis de datos.
+Plataforma unificada para gestionar y ejecutar agentes de inteligencia artificial personalizados para diferentes tareas profesionales y personales.
 
-## Descripción
+## 📋 Descripción
 
-TalentekIA es una plataforma unificada que integra múltiples agentes de inteligencia artificial especializados en diferentes áreas como LinkedIn, finanzas personales, estrategia comercial, y más. El sistema está diseñado para ser modular, escalable y optimizado para diferentes plataformas, incluyendo optimizaciones específicas para Apple Silicon (M1/M2).
+TalentekIA es una plataforma unificada que integra múltiples agentes de inteligencia artificial especializados en diferentes áreas:
 
-## Estructura del Proyecto
+- **LinkedIn Pro**: Análisis de ofertas de empleo y tendencias del mercado laboral
+- **Finanzas Personales**: Gestión y optimización de finanzas personales
+- **Estrategia Comercial**: Asistente para desarrollo de estrategias de negocio
+- **Auto Mejora**: Optimización del rendimiento del sistema y desarrollo personal
+- **Email**: Automatización de la gestión de correos electrónicos
+- **Resumen**: Generación de resúmenes semanales de actividad
+
+El sistema está diseñado para ser modular, escalable y optimizado para diferentes plataformas, incluyendo optimizaciones específicas para Apple Silicon (M1/M2).
+
+## 📁 Estructura del Proyecto
 
 ```
 TalentekIA/
@@ -16,41 +25,83 @@ TalentekIA/
 │   │   ├── finanzas/      # Agente de finanzas personales
 │   │   ├── auto_improve/  # Agente de optimización
 │   │   ├── estrategia/    # Agente de estrategia comercial
-│   │   └── ...
+│   │   ├── email/         # Agente de email
+│   │   └── resumen/       # Agente de resumen
 │   ├── core/              # Componentes centrales del sistema
+│   ├── interface/         # Interfaces de usuario
 │   └── utils/             # Utilidades compartidas
 ├── config/                # Configuración centralizada
 ├── data/                  # Datos generados por los agentes
+│   ├── input/             # Datos de entrada
+│   └── output/            # Datos de salida
 ├── docs/                  # Documentación del sistema
 ├── logs/                  # Archivos de registro
 ├── scripts/               # Scripts auxiliares
+├── tests/                 # Pruebas unitarias y de integración
 ├── .env                   # Variables de entorno (no se sube a GitHub)
 ├── .gitignore             # Archivos a ignorar por Git
 ├── README.md              # Documentación principal
 ├── requirements.txt       # Dependencias del sistema
-└── talentek.py            # Punto de entrada principal
+├── talentek.py            # Punto de entrada principal
+└── start_talentek.sh      # Script de inicio rápido
 ```
 
-## Instalación
+## 🚀 Instalación
+
+### Requisitos previos
+
+- Python 3.8 o superior
+- Pip (gestor de paquetes de Python)
+- Acceso a API keys necesarias (OpenAI, Anthropic, HuggingFace, etc.)
+
+### Pasos de instalación
 
 1. Clonar el repositorio:
    ```bash
-   git clone https://github.com/tu-usuario/TalentekIA.git
-   cd TalentekIA
+   git clone https://github.com/PGQ888/talentekia-agentes-ia.git
+   cd talentekia-agentes-ia
    ```
 
-2. Instalar dependencias:
+2. Crear y activar un entorno virtual:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # En Windows: venv\Scripts\activate
+   ```
+
+3. Instalar dependencias:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Configurar variables de entorno:
+4. Configurar variables de entorno:
    ```bash
    cp .env.example .env
-   # Editar .env con tus claves API y configuraciones
+   # Editar el archivo .env con tus API keys y configuraciones
    ```
 
-## Uso
+5. Inicializar el sistema:
+   ```bash
+   ./start_talentek.sh
+   # Seleccionar opción 1 para inicializar el sistema
+   ```
+
+## 🖥️ Uso
+
+### Usando el script de inicio
+
+```bash
+./start_talentek.sh
+```
+
+Este script mostrará un menú con las siguientes opciones:
+1. Inicializar el sistema
+2. Ejecutar todos los agentes
+3. Ejecutar agente específico
+4. Sincronizar con GitHub
+5. Iniciar interfaz web
+6. Salir
+
+### Usando el punto de entrada principal
 
 ### Inicializar el sistema
 
@@ -82,16 +133,21 @@ python talentek.py --run all --parallel
 python talentek.py --sync
 ```
 
-## Agentes Disponibles
+### Iniciar la interfaz web
 
-- **LinkedIn**: Busca y analiza ofertas de trabajo en LinkedIn
-- **Finanzas**: Analiza y gestiona finanzas personales
-- **Estrategia Comercial**: Genera propuestas de estrategia comercial
-- **Auto-Mejora**: Optimiza el rendimiento del sistema
-- **Email**: Automatiza la gestión de correos electrónicos
-- **Resumen**: Genera resúmenes semanales de la actividad
+```bash
+streamlit run src/interface/streamlit_app.py
+```
 
-## Optimizaciones para Apple Silicon (M1/M2)
+## 📊 Características principales
+
+- **Interfaz unificada**: Gestión centralizada de todos los agentes
+- **Automatización**: Programación de tareas y ejecuciones periódicas
+- **Informes detallados**: Generación de informes en formato Markdown y datos tabulares
+- **Integración con servicios externos**: GitHub, HuggingFace, AnythingLLM
+- **Configuración flexible**: Ajuste de parámetros según necesidades
+
+## ⚡ Optimizaciones para Apple Silicon (M1/M2)
 
 El sistema incluye optimizaciones específicas para equipos con Apple Silicon:
 
@@ -99,14 +155,22 @@ El sistema incluye optimizaciones específicas para equipos con Apple Silicon:
 - Configuración óptima de parámetros de rendimiento
 - Utilización de MPS (Metal Performance Shaders) cuando está disponible
 
-## Contribuir
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Para contribuir:
 
 1. Haz un fork del repositorio
-2. Crea una rama para tu característica (`git checkout -b feature/nueva-caracteristica`)
-3. Haz commit de tus cambios (`git commit -am 'Añade nueva característica'`)
-4. Haz push a la rama (`git push origin feature/nueva-caracteristica`)
-5. Crea un nuevo Pull Request
+2. Crea una rama para tu funcionalidad (`git checkout -b feature/amazing-feature`)
+3. Realiza tus cambios y haz commit (`git commit -m 'Add some amazing feature'`)
+4. Sube los cambios a tu fork (`git push origin feature/amazing-feature`)
+5. Abre un Pull Request
 
-## Licencia
+## 📄 Licencia
 
-Este proyecto está licenciado bajo [tu licencia] - ver el archivo LICENSE para más detalles.
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+
+## 📞 Contacto
+
+Pablo Giráldez - [@PGQ888](https://twitter.com/PGQ888) - pablo@talentek.es
+
+Link del proyecto: [https://github.com/PGQ888/talentekia-agentes-ia](https://github.com/PGQ888/talentekia-agentes-ia)

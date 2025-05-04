@@ -1,0 +1,54 @@
+# Talentek IA - Configuración de Agentes Personalizados
+# Usuario: Pablo Giráldez - Mac M2
+
+[entorno]
+nombre = "TalentekSystemUnified"
+soporte_mac = true
+chip = "M2"
+entorno_virtual = "venv"
+ruta_base = "."  # Ruta relativa al directorio principal
+
+[agente_linkedin]
+nombre = "LinkedIn Pro"
+descripcion = "Busca ofertas, envía mensajes y genera publicaciones estratégicas"
+script = "agents/linkedin_agent.py"
+cookies_path = "config/linkedin_cookies.json"
+frecuencia = "diaria"
+keywords = "executive"
+ubicacion = "España"
+
+[agente_finanzas]
+nombre = "Gestor de Finanzas Personales"
+descripcion = "Analiza gastos, activos, ahorro y propone optimizaciones"
+script = "agents/finanzas_agent.py"
+datos_fuente = "data/gastos.csv"
+frecuencia = "mensual"
+
+[agente_auto_mejora]
+nombre = "Auto Improve"
+descripcion = "Optimiza el entorno técnico de Pablo en su Mac con M2"
+script = "agents/auto_improve_agent.py"
+frecuencia = "semanal"
+modo = "inteligente"
+repositorio = "https://github.com/PGQ888/TalentekSystem"
+
+[agente_estrategia]
+nombre = "Estrategia Comercial"
+descripcion = "Redacta propuestas de valor según cliente y sector"
+script = "agents/estrategia_agent.py"
+plantillas_path = "docs/plantillas/"
+frecuencia = "por demanda"
+
+[agente_resumen_semanal]
+nombre = "Resumen Semanal"
+descripcion = "Genera reporte semanal de tareas, eventos y actividad del sistema"
+script = "scripts/run_weekly_summary.py"
+exportar = "docs/resumen.md"
+frecuencia = "semanal"
+
+[personalizacion]
+usuario = "Pablo Giráldez"
+familia = "Padre de 8 hijos, vive en Madrid"
+objetivo = "Independencia financiera + transición profesional"
+valores = "Fe católica, familia, tecnología con propósito"
+estilo = "Tradicional, orientado a resultados, proactivo"

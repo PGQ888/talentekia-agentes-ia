@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script de inicio para el sistema TalentekIA unificado
+# Optimizado para diferentes plataformas, incluyendo Apple Silicon
 
 # Colores para la salida
 GREEN='\033[0;32m'
@@ -30,6 +31,9 @@ echo -e "${NC}"
 echo -e "${YELLOW}Fecha y hora: $(date)${NC}"
 echo -e "${YELLOW}Sistema: $(uname -s) $(uname -r) ($(uname -m))${NC}"
 echo "--------------------------------------------------------"
+
+# Cambiar al directorio del script si es necesario
+cd "$(dirname "$0")"
 
 # Verificar que estamos en el directorio correcto
 if [ ! -f "talentek.py" ]; then
@@ -129,10 +133,11 @@ echo "2. Ejecutar todos los agentes"
 echo "3. Ejecutar agente específico"
 echo "4. Sincronizar con GitHub"
 echo "5. Iniciar interfaz web"
-echo "6. Salir"
+echo "6. Modo optimizado para Mac M2"
+echo "7. Salir"
 echo ""
 
-read -p "Seleccione una opción (1-6): " option
+read -p "Seleccione una opción (1-7): " option
 
 case $option in
     1)
@@ -175,6 +180,14 @@ case $option in
         fi
         ;;
     6)
+        echo -e "${GREEN}Iniciando modo optimizado para Mac M2...${NC}"
+        if [[ "$(uname -s)" == "Darwin" && "$(uname -m)" == "arm64" ]]; then
+            $PYTHON_CMD run_talentek_m2.py
+        else
+            echo -e "${RED}Este modo solo está disponible para Mac con Apple Silicon (M1/M2)${NC}"
+        fi
+        ;;
+    7)
         echo -e "${GREEN}Saliendo...${NC}"
         exit 0
         ;;

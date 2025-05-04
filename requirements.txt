@@ -6,17 +6,24 @@ numpy==1.24.3
 toml==0.10.2
 pydantic==2.3.0
 
-# Dependencias para procesamiento de datos
+# Procesamiento de datos
 matplotlib==3.7.2
 seaborn==0.12.2
 openpyxl==3.1.2
 beautifulsoup4==4.12.2
 lxml==4.9.3
+scikit-learn==1.3.0
+nltk>=3.8.0
+qdrant-client>=1.6.0
+sentence-transformers>=2.2.2
 
 # Dependencias para IA y ML
-scikit-learn==1.3.0
 torch==2.0.1
 transformers==4.31.0
+langchain>=0.0.267
+langchain-openai>=0.0.5
+openai>=1.0.0
+huggingface-hub>=0.19.0
 
 # Dependencias para LinkedIn
 python-linkedin-v2==0.9.4
@@ -31,6 +38,23 @@ plotly==5.16.0
 schedule==1.2.0
 aiohttp==3.8.5
 asyncio==3.4.3
+apscheduler>=3.10.0
+gitpython>=3.1.30
+pygithub>=1.59.0
+
+# Optimizaciones para Mac M2
+# Estas dependencias están optimizadas para arquitecturas Apple Silicon
+tensorflow-macos>=2.12.0; sys_platform == 'darwin' and platform_machine == 'arm64'
+
+# Herramientas de desarrollo
+pytest>=7.3.1
+black>=23.3.0
+isort>=5.12.0
+flake8>=6.0.0
+
+# Documentación
+sphinx>=7.0.0
+sphinx-rtd-theme>=1.3.0
 
 # Utilidades
 tqdm==4.66.1
