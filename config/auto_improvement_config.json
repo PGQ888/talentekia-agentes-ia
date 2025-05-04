@@ -1,0 +1,15 @@
+{
+  "email_notifications": false,
+  "email_to": "pgiraldez1@gmail.com",
+  "smtp_server": "",
+  "smtp_port": 587,
+  "smtp_user": "",
+  "smtp_password": "",
+  "run_frequency": "weekly",
+  "analyze_dependencies": true,
+  "analyze_code_quality": true,
+  "analyze_performance": true,
+  "auto_apply_safe_fixes": false,
+  "ignored_directories": ["node_modules", "dist", ".git", "venv"],
+  "custom_rules": []
+}

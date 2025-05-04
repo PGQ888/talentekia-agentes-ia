@@ -1,0 +1,10 @@
+{
+  "github_token": "",
+  "repo_owner": "PGQ888",
+  "repo_name": "talentekia-agentes-ia",
+  "create_pull_requests": true,
+  "default_branch": "main",
+  "auto_merge": false,
+  "commit_message_prefix": "[Auto-mejora] ",
+  "labels_for_pr": ["auto-improvement", "maintenance"]
+}
