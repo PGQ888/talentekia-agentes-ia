@@ -1,0 +1,150 @@
+version: '3.9'
+
+services:
+  talentek_api:
+    build:
+      context: ./src/api
+    container_name: talentek_api
+    ports:
+      - "8502:8502"
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+      - ./logs:/app/logs
+      - ./scripts:/app/scripts
+      - ./src/utils:/app/utils
+      - ./src/agents:/app/agents
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ENV_FILE=/app/config/.env
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8502/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  talentek_ui:
+    build:
+      context: ./src/ui
+    container_name: talentek_ui
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./config:/app/config
+      - ./logs:/app/logs
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_THEME_BASE=light
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    depends_on:
+      - talentek_api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/healthz"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  talentek_agent:
+    build:
+      context: ./src/agents
+    container_name: talentek_agent
+    command: ["python", "launch_talentek_system.py"]
+    volumes:
+      - ./src/agents:/app
+      - ./config:/app/config
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./scripts:/app/scripts
+    environment:
+      - ENV_FILE=/app/config/.env
+      - PYTHONPATH=/app
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    depends_on:
+      - talentek_api
+      - qdrant
+      - anythingllm
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: talentek_qdrant
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./data/qdrant:/qdrant/storage
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  anythingllm:
+    image: anythingllm/anythingllm:latest
+    container_name: talentek_anythingllm
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./data/anythingllm:/app/server/storage
+      - ./config:/app/server/config
+      - ./.anythingllm_agent.json:/app/server/storage/anythingllm_agent.json
+    environment:
+      - ANYTHINGLLM_API_KEY=${ANYTHING_LLM_API_KEY}
+      - AGENT_ENABLED=true
+      - AGENT_AUTO_LOAD=true
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # Nuevo servicio para ejecutar análisis programados
+  talentek_scheduler:
+    build:
+      context: ./src/scheduler
+      dockerfile: Dockerfile
+    container_name: talentek_scheduler
+    volumes:
+      - ./scripts:/app/scripts
+      - ./config:/app/config
+      - ./logs:/app/logs
+      - ./data:/app/data
+    environment:
+      - ENV_FILE=/app/config/.env
+      - PYTHONPATH=/app
+      - TALENTEK_ENV=production
+    networks:
+      - talentek_net
+    restart: unless-stopped
+    depends_on:
+      - talentek_api
+    command: ["python", "/app/scripts/talentek_auto_improve.py", "schedule", "--frequency", "weekly", "--run-now"]
+
+networks:
+  talentek_net:
+    driver: bridge
+
+volumes:
+  talentek_data:
+    driver: local
+  talentek_config:
+    driver: local
+  talentek_logs:
+    driver: local
