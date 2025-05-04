@@ -1,0 +1,38 @@
+# Dependencias principales del sistema TalentekIA
+python-dotenv==1.0.0
+requests==2.31.0
+pandas==2.0.3
+numpy==1.24.3
+toml==0.10.2
+pydantic==2.3.0
+
+# Dependencias para procesamiento de datos
+matplotlib==3.7.2
+seaborn==0.12.2
+openpyxl==3.1.2
+beautifulsoup4==4.12.2
+lxml==4.9.3
+
+# Dependencias para IA y ML
+scikit-learn==1.3.0
+torch==2.0.1
+transformers==4.31.0
+
+# Dependencias para LinkedIn
+python-linkedin-v2==0.9.4
+selenium==4.11.2
+webdriver-manager==4.0.0
+
+# Dependencias para interfaz de usuario
+streamlit==1.25.0
+plotly==5.16.0
+
+# Dependencias para automatización
+schedule==1.2.0
+aiohttp==3.8.5
+asyncio==3.4.3
+
+# Utilidades
+tqdm==4.66.1
+colorama==0.4.6
+markdown==3.4.4

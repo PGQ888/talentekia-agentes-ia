@@ -1,0 +1,74 @@
+# Configuración principal del sistema TalentekIA
+# Este archivo contiene la configuración centralizada para todos los agentes
+
+[sistema]
+nombre = "TalentekIA"
+version = "1.0.0"
+modo_rendimiento = "balanced"  # eco, balanced, performance
+debug = false
+log_level = "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+
+[rutas]
+datos = "data"
+logs = "logs"
+temp = "tmp"
+modelos = "models"
+
+[sincronizacion]
+activada = true
+intervalo = 3600  # segundos
+auto_commit = true
+repositorio = "https://github.com/tu-usuario/TalentekIA.git"
+
+[notificaciones]
+email_activado = false
+desktop_activado = true
+email = ""
+nivel_alerta = "WARNING"  # INFO, WARNING, ERROR, CRITICAL
+
+# Configuraciones específicas de agentes
+
+[agente_linkedin]
+activado = true
+frecuencia_actualizacion = "daily"  # hourly, daily, weekly, monthly
+max_ofertas = 100
+paises = ["España", "Remoto"]
+tecnologias = ["Python", "Machine Learning", "Data Science", "AI"]
+experiencia_min = 2
+experiencia_max = 10
+idiomas = ["es", "en"]
+
+[agente_finanzas]
+activado = true
+frecuencia_actualizacion = "weekly"
+moneda = "EUR"
+categorias = ["Ingresos", "Gastos", "Inversiones", "Ahorros"]
+alertas_umbral = 0.2  # 20% de desviación
+
+[agente_estrategia]
+activado = true
+frecuencia_actualizacion = "monthly"
+sectores = ["Tecnología", "Educación", "Salud", "Finanzas"]
+horizonte_temporal = 12  # meses
+profundidad_analisis = "medium"  # basic, medium, deep
+
+[agente_auto_improve]
+activado = true
+frecuencia_actualizacion = "weekly"
+optimizaciones_automaticas = true
+nivel_optimizacion = "balanced"  # conservative, balanced, aggressive
+metricas = ["cpu", "memoria", "tiempo_ejecucion", "precision"]
+
+[agente_email]
+activado = false
+frecuencia_actualizacion = "daily"
+max_emails = 50
+categorias = ["Trabajo", "Personal", "Newsletters", "Spam"]
+auto_respuesta = false
+
+[agente_resumen]
+activado = true
+frecuencia_actualizacion = "weekly"
+incluir_agentes = ["linkedin", "finanzas", "estrategia", "auto_improve"]
+formato = "markdown"
+incluir_graficos = true
