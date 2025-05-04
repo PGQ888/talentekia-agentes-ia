@@ -166,6 +166,28 @@ def main():
     
     # Formatear la salida según lo solicitado
     if args.formato == "texto":
+        # Construir las secciones del análisis DAFO
+        fortalezas_text = ""
+        for f in analisis['analisis_dafo']['fortalezas']:
+            fortalezas_text += f"- {f}\n"
+            
+        debilidades_text = ""
+        for d in analisis['analisis_dafo']['debilidades']:
+            debilidades_text += f"- {d}\n"
+            
+        oportunidades_text = ""
+        for o in analisis['analisis_dafo']['oportunidades']:
+            oportunidades_text += f"- {o}\n"
+            
+        amenazas_text = ""
+        for a in analisis['analisis_dafo']['amenazas']:
+            amenazas_text += f"- {a}\n"
+            
+        recomendaciones_text = ""
+        for r in analisis['recomendaciones']:
+            recomendaciones_text += f"- {r}\n"
+        
+        # Construir el output completo
         output = f"""
 🚀 ANÁLISIS ESTRATÉGICO - {analisis['industria'].upper()} - ENFOQUE: {analisis['enfoque'].upper()}
 Fecha: {datetime.datetime.now().strftime('%d-%m-%Y')}
@@ -173,27 +195,22 @@ Fecha: {datetime.datetime.now().strftime('%d-%m-%Y')}
 📊 ANÁLISIS DAFO:
 
 💪 FORTALEZAS:
-{"".join([f"- {f}\\n" for f in analisis['analisis_dafo']['fortalezas']])}
-
+{fortalezas_text}
 🔄 DEBILIDADES:
-{"".join([f"- {d}\\n" for d in analisis['analisis_dafo']['debilidades']])}
-
+{debilidades_text}
 🌟 OPORTUNIDADES:
-{"".join([f"- {o}\\n" for o in analisis['analisis_dafo']['oportunidades']])}
-
+{oportunidades_text}
 ⚠️ AMENAZAS:
-{"".join([f"- {a}\\n" for a in analisis['analisis_dafo']['amenazas']])}
-
+{amenazas_text}
 🎯 RECOMENDACIONES ESTRATÉGICAS:
-{"".join([f"- {r}\\n" for r in analisis['recomendaciones']])}
-
+{recomendaciones_text}
 Este análisis es una aproximación general y debe adaptarse a las circunstancias específicas de su organización.
 """
     else:  # json
         output = json.dumps(analisis, indent=2)
     
     # Imprimir resultado
-    print("\n" + output.replace("\\n", "\n") + "\n")
+    print("\n" + output + "\n")
     
     print("✅ Análisis estratégico generado correctamente.")
     

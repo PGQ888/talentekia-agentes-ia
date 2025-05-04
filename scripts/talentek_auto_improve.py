@@ -43,9 +43,10 @@ def run_analysis(args):
     """Ejecuta el análisis de auto-mejora."""
     cmd = [sys.executable, AUTO_IMPROVEMENT_SCRIPT]
     
-    if args.no_report:
+    # Verificar si los atributos existen antes de usarlos
+    if hasattr(args, 'no_report') and args.no_report:
         cmd.append("--no-report")
-    if args.no_email:
+    if hasattr(args, 'no_email') and args.no_email:
         cmd.append("--no-email")
     
     try:
@@ -60,11 +61,12 @@ def schedule_execution(args):
     """Programa la ejecución automática."""
     cmd = [sys.executable, SCHEDULE_SCRIPT]
     
-    if args.frequency:
+    # Verificar si los atributos existen antes de usarlos
+    if hasattr(args, 'frequency') and args.frequency:
         cmd.extend(["--frequency", args.frequency])
-    if args.remove:
+    if hasattr(args, 'remove') and args.remove:
         cmd.append("--remove")
-    if args.run_now:
+    if hasattr(args, 'run_now') and args.run_now:
         cmd.append("--run-now")
     
     try:
@@ -79,13 +81,14 @@ def sync_with_github(args):
     """Sincroniza las mejoras con GitHub."""
     cmd = [sys.executable, GIT_SYNC_SCRIPT]
     
-    if args.setup:
+    # Verificar si los atributos existen antes de usarlos
+    if hasattr(args, 'setup') and args.setup:
         cmd.append("--setup")
-    if args.force:
+    if hasattr(args, 'force') and args.force:
         cmd.append("--force")
-    if args.no_push:
+    if hasattr(args, 'no_push') and args.no_push:
         cmd.append("--no-push")
-    if args.no_pr:
+    if hasattr(args, 'no_pr') and args.no_pr:
         cmd.append("--no-pr")
     
     try:
@@ -196,15 +199,26 @@ def main():
         # Ejecutar todo el proceso
         print("🚀 Iniciando proceso completo de auto-mejora...")
         
+        # Crear un objeto Namespace con los atributos necesarios para run_analysis
+        analyze_args = argparse.Namespace()
+        if hasattr(args, 'no_email'):
+            analyze_args.no_email = args.no_email
+        else:
+            analyze_args.no_email = False
+        analyze_args.no_report = False
+        
         # Ejecutar análisis
-        if run_analysis(args):
+        if run_analysis(analyze_args):
             # Sincronizar con GitHub si el análisis fue exitoso
-            sync_args = argparse.Namespace(
-                setup=False, 
-                force=False, 
-                no_push=False, 
-                no_pr=args.no_pr
-            )
+            sync_args = argparse.Namespace()
+            sync_args.setup = False
+            sync_args.force = False
+            sync_args.no_push = False
+            if hasattr(args, 'no_pr'):
+                sync_args.no_pr = args.no_pr
+            else:
+                sync_args.no_pr = False
+            
             sync_with_github(sync_args)
         
         print("✅ Proceso completo finalizado.")
