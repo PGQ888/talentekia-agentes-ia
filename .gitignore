@@ -1,0 +1,136 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+.env
+ENV/
+env.bak/
+venv.bak/
+
+# Configuración específica de TalentekIA
+.env.local
+.env.development
+.env.test
+.env.production
+.env.m2
+config/local_config.toml
+config/secrets.toml
+
+# Logs y datos
+logs/
+*.log
+data/*.csv
+data/*.json
+data/*.xlsx
+data/processed/
+data/raw/
+data/interim/
+data/external/
+
+# Archivos de caché
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# Notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Documentación
+docs/_build/
+docs/api/
+
+# Archivos específicos de IDE
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iws
+out/
+.idea_modules/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# Archivos específicos de TalentekIA
+*_credentials.json
+*_api_keys.txt
+*_secrets.yaml
+model_weights/
+.openai_api_key
+.huggingface_token
+
+# Archivos temporales
+tmp/
+temp/
+.temp/
+.tmp/
+*.tmp
+*.bak
+*.swp
+*~
