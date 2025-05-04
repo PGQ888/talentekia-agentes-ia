@@ -27,6 +27,9 @@ wheels/
 
 # Archivos de configuración con información sensible
 .env
+.env.*
+.env.m2
+.env.standard
 config/settings.json
 *.pem
 *.key
