@@ -1,78 +1,143 @@
-# TalentekIA - Panel Inteligente de Agentes
+# 🧠 TalentekIA - Plataforma de Agentes IA
+
+Plataforma unificada para gestionar y ejecutar agentes de inteligencia artificial personalizados para diferentes tareas profesionales y personales.
 
 ## 📋 Descripción
 
-TalentekIA es una aplicación multiagente personal que utiliza inteligencia artificial para automatizar y optimizar diversas tareas profesionales. La plataforma integra varios agentes especializados que trabajan en conjunto para proporcionar información valiosa y automatizar procesos repetitivos.
+TalentekIA es una plataforma que integra diversos agentes de IA especializados en diferentes áreas:
 
-## ✨ Características
+- **LinkedIn Pro**: Análisis de ofertas de empleo y tendencias del mercado laboral
+- **Estrategia Comercial**: Asistente para desarrollo de estrategias de negocio
+- **Finanzas Personales**: Gestión y optimización de finanzas personales
+- **Auto Mejora**: Asistente para desarrollo personal y profesional
 
-- **🔍 Agente LinkedIn Pro**: Escanea LinkedIn en busca de oportunidades de trabajo y candidatos potenciales
-- **📊 Agente de Estrategia Comercial**: Analiza tendencias del mercado y genera estrategias comerciales personalizadas
-- **💵 Agente de Finanzas Personales**: Analiza tus finanzas y proporciona recomendaciones personalizadas
-- **⚙️ Agente de Auto Mejora**: Analiza tu rendimiento y proporciona recomendaciones para mejorar
-- **📋 Resumen Semanal**: Genera informes semanales consolidando la información de todos los agentes
-- **⚙️ Configuración**: Panel de configuración para personalizar el comportamiento de los agentes
+Todos los agentes se gestionan a través de una interfaz unificada desarrollada con Streamlit.
 
 ## 🚀 Instalación
 
-1. Clona este repositorio:
+### Requisitos previos
+
+- Python 3.8 o superior
+- Pip (gestor de paquetes de Python)
+- Acceso a API keys necesarias (OpenAI, Anthropic, HuggingFace, etc.)
+
+### Pasos de instalación
+
+1. Clonar el repositorio:
+   ```bash
+   git clone https://github.com/PGQ888/talentek-ia.git
+   cd talentek-ia
+   ```
+
+2. Crear y activar un entorno virtual:
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate  # En Windows: venv\Scripts\activate
+   ```
+
+3. Instalar dependencias:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Configurar variables de entorno:
+   ```bash
+   cp .env.example .env
+   # Editar el archivo .env con tus API keys y configuraciones
+   ```
+
+5. Inicializar el sistema:
+   ```bash
+   python initialize_system.py
+   ```
+
+## 🖥️ Uso
+
+### Iniciar la interfaz de usuario
+
 ```bash
-git clone https://github.com/PGQ888/talentekia-agentes-ia.git
-cd talentekia-agentes-ia
+streamlit run src/interface/streamlit_app.py
 ```
 
-2. Crea un entorno virtual e instala las dependencias:
-```bash
-python -m venv venv
-source venv/bin/activate  # En Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-3. Configura las variables de entorno:
-```bash
-cp .env.example .env
-# Edita el archivo .env con tus claves API
-```
-
-## 💻 Uso
-
-Para iniciar la aplicación:
+### Ejecutar un agente específico
 
 ```bash
-streamlit run streamlit_app_fixed.py
+python -c "from src.agents.agent_manager import execute_agent; execute_agent('linkedin_agent')"
 ```
 
-La aplicación estará disponible en http://localhost:8501
+### Programar ejecuciones automáticas
 
-## 📁 Estructura del Proyecto
-
-```
-talentekia-agentes-ia/
-├── docs/                    # Archivos generados por los agentes
-│   ├── linkedin_ofertas.csv # Datos de ofertas de LinkedIn
-│   └── linkedin_ofertas.md  # Resumen en Markdown de las ofertas
-├── scripts/                 # Módulos de la aplicación
-│   ├── weekly_summary.py    # Generador de resúmenes semanales
-│   ├── config_tab_fixed.py  # Panel de configuración
-│   └── run_weekly_summary.py # Script para ejecutar resúmenes programados
-├── agents/                  # Implementación de los agentes
-├── config/                  # Archivos de configuración
-├── streamlit_app_fixed.py   # Aplicación principal Streamlit
-└── README.md                # Este archivo
+```bash
+./start_auto_sync.sh
 ```
 
-## 🛠️ Tecnologías Utilizadas
+## 📁 Estructura del proyecto
 
-- **Python**: Lenguaje principal de desarrollo
-- **Streamlit**: Framework para la interfaz de usuario
-- **Pandas**: Procesamiento y análisis de datos
-- **LangChain**: Framework para agentes de IA
-- **OpenAI API**: Motor de IA para los agentes
+```
+talentek-ia/
+├── README.md
+├── requirements.txt
+├── .gitignore
+├── src/
+│   ├── agents/
+│   │   ├── linkedin_agent.py
+│   │   ├── estrategia_comercial.py
+│   │   ├── finanzas_personales.py
+│   │   ├── auto_mejora.py
+│   │   ├── base_agent.py
+│   │   ├── agent_manager.py
+│   │   └── config.py
+│   ├── interface/
+│   │   └── streamlit_app.py
+│   └── utils/
+│       ├── helpers.py
+│       ├── env_loader.py
+│       ├── weekly_summary.py
+│       └── github_integration.py
+├── data/
+│   ├── input/
+│   └── output/
+├── docs/
+│   ├── user_manual.md
+│   ├── DESARROLLO.md
+│   └── QUICKSTART.md
+└── tests/
+    ├── test_agents.py
+    └── test_interface.py
+```
 
-## 📝 Licencia
+## 📊 Características principales
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+- **Interfaz unificada**: Gestión centralizada de todos los agentes
+- **Automatización**: Programación de tareas y ejecuciones periódicas
+- **Informes detallados**: Generación de informes en formato Markdown y datos tabulares
+- **Integración con servicios externos**: GitHub, HuggingFace, AnythingLLM
+- **Configuración flexible**: Ajuste de parámetros según necesidades
 
-## 👨‍💻 Autor
+## 🔧 Configuración
 
-- **Pablo Giraldez** - [PGQ888](https://github.com/PGQ888)
+La configuración del sistema se realiza a través de:
+
+1. Archivo `.env` para variables de entorno sensibles
+2. Interfaz de configuración en la aplicación Streamlit
+3. Archivos de configuración en formato JSON para cada agente
+
+## 🤝 Contribuir
+
+Las contribuciones son bienvenidas. Para contribuir:
+
+1. Haz un fork del repositorio
+2. Crea una rama para tu funcionalidad (`git checkout -b feature/amazing-feature`)
+3. Realiza tus cambios y haz commit (`git commit -m 'Add some amazing feature'`)
+4. Sube los cambios a tu fork (`git push origin feature/amazing-feature`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está licenciado bajo la Licencia MIT - ver el archivo LICENSE para más detalles.
+
+## 📞 Contacto
+
+Pablo Giráldez - [@PGQ888](https://twitter.com/PGQ888) - pablo@talentek.es
+
+Link del proyecto: [https://github.com/PGQ888/talentek-ia](https://github.com/PGQ888/talentek-ia)

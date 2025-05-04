@@ -1,0 +1,110 @@
+# Configuración principal del sistema TalentekIA
+# Archivo de configuración centralizado para todos los agentes
+
+[entorno]
+nombre = "TalentekIA"
+version = "2.0.0"
+chip = "M2"
+plataforma = "Mac"
+
+[personalizacion]
+usuario = "Pablo Giraldez"
+idioma = "es"
+tema = "claro"
+email = "user@example.com"
+
+[rutas]
+base = "./"
+data = "./data"
+logs = "./logs"
+agentes = "./agents"
+config = "./config"
+
+[api_keys]
+# Asegúrate de nunca subir este archivo a GitHub con llaves reales
+openai = "env:OPENAI_API_KEY"
+linkedin = "env:LINKEDIN_API_KEY"
+anthropic = "env:ANTHROPIC_API_KEY"
+
+[parametros_modelo]
+modelo_principal = "gpt-4"
+temperatura = 0.7
+max_tokens = 4000
+keep_alive = true
+
+[optimizacion_m2]
+pytorch_mps = true
+tensorflow_optimizado = true
+num_threads = 8
+enable_fallback = true
+
+# ==== CONFIGURACIÓN DE AGENTES ====
+
+[agente_linkedin]
+nombre = "LinkedIn Networker"
+descripcion = "Agente para gestión y automatización de LinkedIn"
+activo = true
+script = "agents/linkedin/linkedin_agent.py"
+intervalo_ejecucion = "diario"
+prioridad = 1
+max_conexiones_diarias = 20
+modo_trabajo = "automático"
+modelo = "gpt-4-0125-preview"
+parametros = { temperatura = 0.7, proactividad = 0.8, personalizado = true }
+
+[agente_estrategia_comercial]
+nombre = "Estrategia Comercial"
+descripcion = "Agente para análisis y recomendaciones de estrategia de negocio"
+activo = true
+script = "agents/estrategia_comercial/estrategia_comercial_agent.py"
+intervalo_ejecucion = "semanal"
+prioridad = 2
+sectores_objetivo = ["Tecnología", "Salud", "Retail"]
+modo_trabajo = "semiautomático"
+parametros = { profundidad_analisis = "alta", horizonte_temporal = "trimestral" }
+
+[agente_finanzas_personales]
+nombre = "Finanzas Personales"
+descripcion = "Agente para análisis y recomendaciones financieras"
+activo = true
+script = "agents/finanzas/finanzas_personales_agent.py"
+intervalo_ejecucion = "semanal"
+prioridad = 3
+categorias_gasto = ["Vivienda", "Alimentación", "Transporte", "Entretenimiento", "Servicios", "Otros"]
+objetivo_ahorro = 40.0
+parametros = { conservador = true, incluir_inversiones = true }
+
+[agente_automejora]
+nombre = "Automejora Personal"
+descripcion = "Agente para desarrollo personal y seguimiento de objetivos"
+activo = true
+script = "agents/auto_improve/automejora_agent.py"
+intervalo_ejecucion = "diario"
+prioridad = 4
+areas_desarrollo = ["Habilidades técnicas", "Comunicación", "Liderazgo", "Gestión del tiempo"]
+habitos_seguimiento = ["lecturadiaria", "ejercicio", "meditacion"]
+parametros = { recordatorios = true, progresivo = true }
+
+[agente_email_automation]
+nombre = "Email Manager"
+descripcion = "Agente para gestionar y automatizar tu bandeja de entrada"
+activo = true
+script = "agents/email/email_automation_agent.py"
+intervalo_ejecucion = "diario"
+prioridad = 2
+categorias_email = ["Prioritarios", "Trabajo", "Personal", "Promociones", "Otros"]
+modo_trabajo = "automático"
+parametros = { smart_responder = true, archivar_automatico = true, prioridad_minima = "media" }
+
+[agente_resumen_semanal]
+nombre = "Resumen Semanal Integral"
+descripcion = "Agente para generar informes integrales semanales de todos los agentes"
+activo = true
+script = "agents/resumen/resumen_semanal_agent.py"
+intervalo_ejecucion = "semanal"
+dia_generacion = "domingo"
+incluir_predicciones = true
+prioridad = 1
+formato_salida = "markdown"
+enviar_email = true
+parametros = { detalle = "alto", incluir_graficos = true }

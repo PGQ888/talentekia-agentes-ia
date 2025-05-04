@@ -58,10 +58,10 @@ class EnvLoader:
         key_mapping = {
             'openai': 'OPENAI_API_KEY',
             'github': 'GITHUB_TOKEN',
-            'huggingface': 'HF_TOKEN',
+            'huggingface': 'HUGGINGFACE_TOKEN',  # Corregido para coincidir con .env
             'linkedin': 'LINKEDIN_COOKIES',
             'google': 'GOOGLE_CLIENT_SECRET',
-            'anythingllm': 'ANYTHING_LLM_API_KEY',
+            'anythingllm': 'ANYTHINGLLM_API_KEY',  # Corregido para coincidir con .env
             'qdrant': 'QDRANT_API_KEY'
         }
         
@@ -80,8 +80,8 @@ class EnvLoader:
         """Devuelve un diccionario con todas las variables de entorno relevantes"""
         # Excluir variables sensibles como claves API de la salida completa
         sensitive_keys = [
-            'OPENAI_API_KEY', 'GITHUB_TOKEN', 'HF_TOKEN', 'LINKEDIN_PASSWORD',
-            'GOOGLE_CLIENT_SECRET', 'ANYTHING_LLM_API_KEY'
+            'OPENAI_API_KEY', 'GITHUB_TOKEN', 'HUGGINGFACE_TOKEN', 'LINKEDIN_PASSWORD',
+            'GOOGLE_CLIENT_SECRET', 'ANYTHINGLLM_API_KEY'
         ]
         
         result = {}

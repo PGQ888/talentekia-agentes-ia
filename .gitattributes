@@ -1,0 +1,41 @@
+# Configuración de Git para el proyecto TalentekIA
+
+# Normalización de líneas para archivos de texto
+* text=auto
+
+# Archivos de texto específicos
+*.py text eol=lf
+*.md text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.sh text eol=lf
+
+# Archivos binarios
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.pkl binary
+*.h5 binary
+*.model binary
+
+# Archivos de datos
+*.csv text eol=lf
+*.tsv text eol=lf
+*.sql text eol=lf
+
+# No exportar ciertos archivos en los archivos .zip del proyecto
+.gitignore export-ignore
+.gitattributes export-ignore
+.github export-ignore
+tests export-ignore
+docs/dev export-ignore

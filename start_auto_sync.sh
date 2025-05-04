@@ -1,24 +1,32 @@
 #!/bin/bash
+# Script para iniciar la sincronización automática de agentes
+# Este script inicia el proceso de sincronización en segundo plano
 
-# Script para iniciar el servicio de sincronización automática
-echo "Iniciando servicio de sincronización automática de TalentekIA..."
+echo "Iniciando sincronización automática de agentes de TalentekIA..."
+
+# Obtener el directorio del script
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Activar entorno virtual si existe
-if [ -d "venv" ]; then
-    echo "Activando entorno virtual..."
-    source venv/bin/activate
+if [ -d "$SCRIPT_DIR/venv" ]; then
+    source "$SCRIPT_DIR/venv/bin/activate"
+    echo "Entorno virtual activado"
+else
+    echo "Advertencia: No se encontró entorno virtual en $SCRIPT_DIR/venv"
 fi
 
-# Instalar dependencias necesarias si no están ya instaladas
-pip install schedule python-dotenv
+# Verificar que Python esté disponible
+if ! command -v python3 &> /dev/null; then
+    echo "Error: Python 3 no está instalado o no está en el PATH"
+    exit 1
+fi
 
-# Ejecutar el script de sincronización en segundo plano
-echo "Iniciando servicio en segundo plano..."
-nohup python scripts/auto_sync.py > auto_sync_output.log 2>&1 &
+# Iniciar el proceso de sincronización en segundo plano
+nohup python3 -u "$SCRIPT_DIR/src/utils/auto_sync.py" > "$SCRIPT_DIR/logs/auto_sync.log" 2>&1 &
 
-# Guardar el PID para poder detener el servicio más tarde
-echo $! > auto_sync.pid
+# Guardar el PID del proceso
+echo $! > "$SCRIPT_DIR/auto_sync.pid"
 
-echo "Servicio iniciado con PID: $(cat auto_sync.pid)"
-echo "Logs disponibles en: auto_sync_output.log"
-echo "Para detener el servicio, ejecuta: ./stop_auto_sync.sh"
+echo "Proceso de sincronización iniciado con PID $(cat "$SCRIPT_DIR/auto_sync.pid")"
+echo "Los logs se guardan en $SCRIPT_DIR/logs/auto_sync.log"
+echo "Para detener la sincronización, ejecuta: ./stop_auto_sync.sh"
