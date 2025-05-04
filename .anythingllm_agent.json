@@ -1,0 +1,44 @@
+{
+  "name": "TalentekAI Master Agent",
+  "description": "Agente maestro de TalentekAI para Pablo Giráldez que conecta todos los sistemas y herramientas personalizadas",
+  "version": "1.0.0",
+  "commands": [
+    {
+      "name": "resumen",
+      "description": "Genera un resumen ejecutivo de la información disponible",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/commands/resumen.py"
+    },
+    {
+      "name": "auto-mejora",
+      "description": "Ejecuta el sistema de auto-mejora para analizar y mejorar el código",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/talentek_auto_improve.py",
+      "args": ["all"]
+    },
+    {
+      "name": "linkedin",
+      "description": "Genera contenido optimizado para LinkedIn",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/commands/linkedin.py"
+    },
+    {
+      "name": "finanzas",
+      "description": "Accede a información financiera y genera reportes",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/commands/finanzas.py"
+    },
+    {
+      "name": "estrategia",
+      "description": "Genera análisis estratégicos y recomendaciones",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/commands/estrategia.py"
+    },
+    {
+      "name": "status",
+      "description": "Muestra el estado actual del sistema TalentekAI",
+      "script_path": "/Users/pablogiraldez/talentek-ai-unified/scripts/talentek_auto_improve.py",
+      "args": ["status"]
+    }
+  ],
+  "api_key_env": "ANYTHING_LLM_API_KEY",
+  "workspace": "Talentek",
+  "auto_activate": true,
+  "author": "Pablo Giráldez",
+  "contact": "pgiraldez1@gmail.com"
+}
